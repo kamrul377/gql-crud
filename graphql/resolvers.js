@@ -52,7 +52,24 @@ export const resolvers = {
                 name, email, password: hasPass
             })
             return newuser
-        }
+        },
+
+        userLogin: async (_, { email, password }) => {
+            const user = await User.findOne({ email })
+            if (!user) {
+                throw new Error("email not valid")
+            }
+
+            const pass = bcryptjs.compareSync(password, user.password)
+            if (!pass) {
+                throw new Error("Password not match")
+            }
+
+            return user
+
+
+
+        },
 
 
     },

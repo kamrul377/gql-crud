@@ -46,6 +46,7 @@ type Mutation{
     age:Int!) : Student
     
     userRegistration (name:String!, email:String!,password:String!) : User
+    userLogin (email:String!,password:String!) : User
     
 }
 
